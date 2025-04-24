@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | NexturGo Solutions PVT LTD</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Business Card Styles - Added without modifying existing code */
+    .founder-card {
+      position: absolute;
+      width: 380px;
+      height: 260px;
+      z-index: 10;
+      transform-style: preserve-3d;
+      transition: all 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+      cursor: pointer;
+    }
+
+    .founder-card-container {
+      position: relative;
+      width: 380px;
+      height: 260px;
+    }
+
+    .founder-card:hover {
+      transform: rotateY(180deg) scale(1.05);
+    }
+
+    .founder-card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .founder-card-side {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .founder-front {
+      background: linear-gradient(135deg, #4f7097 0%, #93a7d1 100%);
+      color: white;
+      z-index: 2;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .founder-back {
+      background: linear-gradient(135deg, #93a7d1 0%, #4f7097 100%);
+      color: white;
+      transform: rotateY(180deg);
+      z-index: 1;
+      justify-content: space-between;
+    }
+
+    .founder-logo-container {
+      width: 70px;
+      height: 70px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+      z-index: 3;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 3px solid white;
+      padding: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .founder-logo-container:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .founder-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .founder-name {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      z-index: 3;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .founder-name:hover {
+      transform: translateY(-2px);
+      text-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .founder-title {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      font-weight: 400;
+      z-index: 3;
+      position: relative;
+    }
+
+    .founder-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.5);
+    }
+
+    .founder-contact-info {
+      font-size: 12px;
+      margin: 3px 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .founder-contact-info:hover {
+      transform: translateX(5px);
+    }
+
+    .founder-contact-info i {
+      font-size: 11px;
+    }
+
+    /* Back side styles */
+    .founder-back-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .founder-expertise-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .founder-expertise-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: rgba(255,255,255,0.5);
+    }
+
+    .founder-expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .founder-expertise-item {
+      background: rgba(255,255,255,0.15);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.1);
+      min-height: 40px;
+    }
+
+    .founder-expertise-item:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    .founder-expertise-item i {
+      margin-right: 5px;
+      font-size: 12px;
+      color: #1bf5af;
+    }
+
+    .founder-social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: auto;
+      padding-bottom: 5px;
+    }
+
+    .founder-social-link {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    .founder-social-link:hover {
+      background: #1bf5af;
+      color: #4f7097;
+      transform: scale(1.2) translateY(-3px);
+    }
+
+    /* Decorative elements */
+    .founder-front::before, .founder-back::before {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -40px;
+      right: -40px;
+    }
+
+    .founder-front::after, .founder-back::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      bottom: -25px;
+      left: -25px;
+    }
+
+    /* Positioning for founder cards */
+    .founder-card-container {
+      position: absolute;
+    }
+
+    #prathamesh-card-container {
+      left: -12px;
+      top: 80%;
+      transform: translateY(-50%);
+    }
+
+    #sujal-card-container {
+      right: 2px;
+      top: 40%;
+      transform: translateY(-50%);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .founder-card-container {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin: 20px auto;
+      }
+
+      #prathamesh-card-container, #sujal-card-container {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .founder-card {
+        width: 300px;
+        height: 180px;
+      }
+      .founder-name {
+        font-size: 20px;
+      }
+      .founder-expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+      .founder-expertise-item {
+        font-size: 10px;
+        padding: 5px;
+      }
+      .founder-social-links {
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header / Navbar -->
+<header>
+  <nav class="navbar container">
+    <div class="logo">
+      <img src="assets/logonbgh.png" alt="Nexturgo Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero contact-hero">
+  <div class="container">
+    <h1 class="fade-in">About Us</h1>
+    <p class="fade-in delay-1">We're passionate about helping businesses grow through stunning and scalable web solutions.</p>
+  </div>
+</section>
+
+<!-- Our Story & Mission -->
+<section class="about-section">
+  <div class="container fade-in">
+    <h2>Our Story</h2>
+    <p>Founded with the vision to empower businesses in the digital space, GrowWeb started as a small team of passionate designers and developers. Today, we continue our journey by creating websites that not only look beautiful but perform efficiently to drive growth and engagement.</p>
+  </div>
+</section>
+
+<!-- Founder Bio -->
+<section class="about-section">
+  <div class="container fade-in delay-1">
+    <h2>Meet Our Founders</h2>
+
+    <!-- Founder 1 -->
+    <div class="founder-block left-align">
+      <div class="founder-img">
+        <img src="assets/projects/ecom1.jpg" alt="Prathamesh B. Jagtap" />
+      </div>
+      <div class="founder-info">
+        <h3>Prathamesh B. Jagtap</h3>
+        <p>Prathamesh co-founded GrowWeb with a deep enthusiasm for impactful design and agile development. With a technical mind and creative soul, he helps turn ideas into visually stunning digital realities.</p>
+      </div>
+    </div>
+
+    <!-- Prathamesh Business Card (Left Side) -->
+    <div class="founder-card-container" id="prathamesh-card-container">
+      <div class="founder-card" id="prathameshCard">
+        <!-- FRONT SIDE -->
+        <div class="founder-card-side founder-front">
+          <div class="founder-logo-container">
+            <img class="founder-logo" src="assets/logonbgh.png" alt="Prathamesh B. Jagtap Logo">
+          </div>
+          <div class="founder-name">PRATHAMESH JAGTAP</div>
+          <div class="founder-title">Co-Founder & Director</div>
+          <div class="founder-contact-info"><i class="fas fa-envelope"></i> prathamesh@nexturgo.com</div>
+          <div class="founder-contact-info"><i class="fas fa-phone-alt"></i> +91 XXXXX XXXXX</div>
+        </div>
+
+        <!-- BACK SIDE with Expertise -->
+        <div class="founder-card-side founder-back">
+          <div class="founder-back-content">
+            <div class="founder-expertise-title">MY EXPERTISE</div>
+            <div class="founder-expertise-grid">
+              <div class="founder-expertise-item"><i class="fas fa-code"></i> Web Development</div>
+              <div class="founder-expertise-item"><i class="fas fa-mobile-alt"></i> Mobile Apps</div>
+              <div class="founder-expertise-item"><i class="fas fa-paint-brush"></i> UI/UX Design</div>
+              <div class="founder-expertise-item"><i class="fas fa-shopping-cart"></i> eCommerce</div>
+            </div>
+            <div class="founder-social-links">
+              <a href="#" class="founder-social-link"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="founder-social-link"><i class="fab fa-github"></i></a>
+              <a href="#" class="founder-social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="founder-social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founder 2 -->
+    <div class="founder-block right-align">
+      <div class="founder-img">
+        <img src="assets/sujal.png" alt="Sujal A. Kudekar" />
+      </div>
+      <div class="founder-info">
+        <h3>Sujal A. Kudekar</h3>
+        <p>Sujal founded GrowWeb with the goal of making high-quality web design accessible to every business,
+          big or small. With an MCA degree and a passion for user experience,
+          he leads our team with dedication and innovation.</p>
+      </div>
+    </div>
+
+    <!-- Sujal Business Card (Right Side) -->
+    <div class="founder-card-container" id="sujal-card-container">
+      <div class="founder-card" id="sujalCard">
+        <!-- FRONT SIDE -->
+        <div class="founder-card-side founder-front">
+          <div class="founder-logo-container">
+            <img class="founder-logo" src="assets/logonbgh.png" alt="Sujal Kudekar Logo">
+          </div>
+          <div class="founder-name">SUJAL KUDEKAR</div>
+          <div class="founder-title">Co-Founder & Director</div>
+          <div class="founder-contact-info"><i class="fas fa-envelope"></i> kudekarsujal@gmail.com</div>
+          <div class="founder-contact-info"><i class="fas fa-phone-alt"></i> +91 7821947865</div>
+        </div>
+
+        <!-- BACK SIDE with Expertise -->
+        <div class="founder-card-side founder-back">
+          <div class="founder-back-content">
+            <div class="founder-expertise-title">MY EXPERTISE</div>
+            <div class="founder-expertise-grid">
+              <div class="founder-expertise-item"><i class="fas fa-code"></i> Web Development</div>
+              <div class="founder-expertise-item"><i class="fas fa-mobile-alt"></i> Mobile Apps</div>
+              <div class="founder-expertise-item"><i class="fas fa-paint-brush"></i> UI/UX Design</div>
+              <div class="founder-expertise-item"><i class="fas fa-shopping-cart"></i> eCommerce</div>
+            </div>
+            <div class="founder-social-links">
+              <a href="#" class="founder-social-link"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="founder-social-link"><i class="fab fa-github"></i></a>
+              <a href="#" class="founder-social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="founder-social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Timeline / Growth Journey -->
+<section class="about-section">
+  <div class="container fade-in delay-2">
+    <h2>Our Journey</h2>
+    <ul class="timeline">
+      <li><strong>2023:</strong> Started as a freelance project.</li>
+      <li><strong>2024:</strong> Registered NexturGo officially.</li>
+      <li><strong>2025:</strong> Helped 20+ businesses establish an online presence.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Vision & Core Values -->
+<section class="about-section">
+  <div class="container fade-in delay-3">
+    <h2>Our Vision & Values</h2>
+    <p>We aim to be the go-to digital partner for growing businesses. Our values include transparency, creativity, customer success, and continuous learning.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <!-- Logo & Tagline -->
+    <div class="footer-logo">
+      <img src="assets/logonbgh.png" alt="GrowWeb Logo" />
+      <p>Empowering businesses through modern web solutions.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-links">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Website Development</a></li>
+        <li><a href="#">Website Hosting</a></li>
+        <li><a href="#">Website Maintenance</a></li>
+        <li><a href="#">SEO Optimization</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: <a href="mailto:support@nexturgo.in">support@nexturgo.in</a></p>
+      <p>Phone: +91-98765-43210</p>
+      <p>Location: Sangamner, Maharashtra</p>
+      <div class="social-icons">
+        <a href="#"><img src="assets/icons/facebook.svg" alt="Facebook" /></a>
+        <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter" /></a>
+        <a href="#"><img src="assets/icons/linkedin.svg" alt="LinkedIn" /></a>
+        <a href="#"><img src="assets/icons/instagram.svg" alt="Instagram" /></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 NexturGo Solutions PVT LTD. All rights reserved. | <a href="privacy-terms.html">Privacy Policy & Terms</a></p>
+  </div>
+</footer>
+
+<script src="scripts/script.js"></script>
+
+<!-- Business Card Script - Added without modifying existing code -->
+<script>
+  // Function to handle card flipping
+  function setupCardFlip(cardId) {
+    const card = document.getElementById(cardId);
+
+    if (!card) return;
+
+    // Click to flip
+    card.addEventListener('click', function() {
+      this.classList.toggle('flipped');
+    });
+
+    // Touch to flip for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    card.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    card.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        card.classList.add('flipped');
+      }
+      if (touchEndX > touchStartX + 50) {
+        card.classList.remove('flipped');
+      }
+    }
+
+    // Add hover effects for non-touch devices
+    if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) {
+      card.addEventListener('mouseenter', function() {
+        this.classList.add('flipped');
+      });
+
+      card.addEventListener('mouseleave', function() {
+        this.classList.remove('flipped');
+      });
+    }
+  }
+
+  // Initialize both cards
+  document.addEventListener('DOMContentLoaded', function() {
+    setupCardFlip('prathameshCard');
+    setupCardFlip('sujalCard');
+  });
+</script>
+</body>
+</html>

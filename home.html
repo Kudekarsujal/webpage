@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexturGo Solutions PVT LTD | Helping Your Business Grow</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <!-- Navbar -->
+<header>
+  <nav class="navbar container">
+    <div class="logo">
+  <img src="assets\logonbgh.png" alt="Nexturgo Logo" />
+  
+</div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <section class="page-header fade-in">
+  <div class="container hero-grid">
+    <!-- Text Content -->
+    <div class="hero-text fade-in">
+      <h1>Build & Grow Your Business Online</h1>
+      <p class="delay-1">
+        We design, develop, host, and maintain websites to help businesses thrive in the digital world.
+      </p>
+      <a href="#contact" class="btn delay-2">Get Started</a>
+    </div>
+
+    <!-- Image -->
+    <div class="hero-image fade-in delay-1">
+      <img src="assets/home.jpg" alt="Grow Your Business" />
+    </div>
+  </div>
+</section>
+
+
+  <!-- Services Section -->
+  <section class="services">
+    <div class="container">
+      <h2 class="section-title">Our Core Services</h2>
+      <div class="service-grid">
+        <div class="card">
+          <h3>Website Development</h3>
+          <p>Modern, responsive, and tailored websites that represent your brand.</p>
+        </div>
+        <div class="card">
+          <h3>Website Hosting</h3>
+          <p>Fast, secure, and scalable hosting solutions for your business site.</p>
+        </div>
+        <div class="card">
+          <h3>Maintenance & Support</h3>
+          <p>We ensure your website is updated, secure, and always running smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Let’s bring your vision to life.</h2>
+      <p>Whether you need a brand-new website or want to upgrade your current one, we're here to help.</p>
+      <a href="#contact" class="btn">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form action="#" method="post">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+<footer class="footer">
+  <div class="container footer-grid">
+    <!-- Logo & Tagline -->
+    <div class="footer-logo">
+      <img src="assets/logonbgh.png" alt="GrowWeb Logo" />
+      <p>Empowering businesses through modern web solutions.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-links">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Website Development</a></li>
+        <li><a href="#">Website Hosting</a></li>
+        <li><a href="#">Website Maintenance</a></li>
+        <li><a href="#">SEO Optimization</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: <a href="mailto:support@growweb.in">support@growweb.in</a></p>
+      <p>Phone: +91-7821947865</p>
+      <p>Location: Sangamner, Maharashtra</p>
+      <div class="social-icons">
+        <a href="#"><img src="assets/icons/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="assets/icons/twitter.png" alt="Twitter" /></a>
+        <a href="#"><img src="assets/icons/linkedin.png" alt="LinkedIn" /></a>
+        <a href="#"><img src="assets/icons/instagram.png" alt="Instagram" /></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 NexturGo Solutions PVT LTD. All rights reserved. | <a href="privacy-terms.html">Privacy Policy & Terms</a></p>
+  </div>
+</footer>
+
+
+  <script src="script.js">// script.js
+
+// Simple fade-in effect using IntersectionObserver
+const faders = document.querySelectorAll('.fade-in');
+
+const appearOptions = {
+  threshold: 0.2,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(
+  entries,
+  appearOnScroll
+) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) {
+      return;
+    } else {
+      entry.target.classList.add('appear');
+      appearOnScroll.unobserve(entry.target);
+    }
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+</script>
+</body>
+
+</html>
